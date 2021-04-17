@@ -88,7 +88,7 @@
                                 <div class="modal-footer">
                                     
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <a href="" class="btn btn-success">Yes</a>
+                                    <a href="{{route('delete_medicine', ['id' => $medicine->id])}}" class="btn btn-success">Yes</a>
                                 </div>
                             </div>
                         </div>

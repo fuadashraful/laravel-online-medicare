@@ -68,14 +68,14 @@
 
         <li ontouchstart="this.classList.toggle('hover');">
         <div class="large button card-front">
-            <a href="">Buy Medicine</a>
+            <a href="{{ route('show_medicine') }}">Buy Medicine</a>
             <i class="fa fa-capsules card-icon"></i>
         </div>
 
         <div class="panel card-back">
             <i class="fa fa-map-o card-icon"></i>
             <div class="hub-info">
-            <a href="">mehmetmedicare.com</a>
+            <a href="{{ route('show_medicine') }}">Buy Medicine</a>
             <p>Find resources about business, family, exercise, and other various topics.</p>
             </div>
             <small class="clear">Updated monthly.</small>

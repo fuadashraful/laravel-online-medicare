@@ -9,6 +9,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <!-- Toaster CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+
         <!-- Styles -->
         @stack('css')
         <style>
@@ -116,7 +119,7 @@
             <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
                 <li class="name">
-                <h1><a href="">Mehmet Medicare</a></h1>
+                <h1><a href="/">Mehmet Medicare</a></h1>
                 </li>
             </ul>
             </nav>
@@ -128,6 +131,32 @@
         <div class="container">
             @yield('content')
         </div>
+        <script src="{{ asset('admin_dashboard/vendor/jquery/jquery.min.js') }} "></script>
+        <script src="{{ asset('admin_dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }} "></script>
+        <script src="{{ asset('admin_dashboard/vendor/jquery-easing/jquery.easing.min.js') }} "></script>
+            <!-- Toaster Js  -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+        <script>
+            @if(Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}";
+            switch(type){
+                case 'info':
+                    toastr.info("{{ Session::get('message') }}");
+                    break;
 
+                case 'warning':
+                    toastr.warning("{{ Session::get('message') }}");
+                    break;
+
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    break;
+
+                case 'error':
+                    toastr.error("{{ Session::get('message') }}");
+                    break;
+                }
+            @endif
+        </script>
     </body>
 </html>

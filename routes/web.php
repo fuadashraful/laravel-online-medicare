@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Auth::routes();
 
@@ -29,3 +29,8 @@ Route::get('/all-medicine', 'MedicineController@allMedicine')->name('all_medicin
 Route::get('/edit-medicine/{id}', 'MedicineController@editMedicine')->name('edit_medicine');
 Route::post('/update-medicine/{id}', 'MedicineController@updateMedicine')->name('update_medicine');
 Route::get('/toggle-medicine-status/{id}', 'MedicineController@toggleMedicineStatus')->name('toggle_medicine_status');
+Route::get('/delete-medicine/{id}', 'MedicineController@deleteMedicine')->name('delete_medicine');
+
+Route::get('/show-medicine', 'MedicineController@showMedicine')->name('show_medicine');
+Route::get('/buy-medicine/{id}', 'MedicineController@buyMedicine')->name('buy_medicine');
+Route::post('/order-medicine/{id}', 'OrderMedicineController@orderMedicine')->name('order_medicine');

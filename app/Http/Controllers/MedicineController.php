@@ -14,6 +14,17 @@ class MedicineController extends Controller
         $this->middleware('auth');
     }
 
+    public function showMedicine()
+    {
+        $medicines=Medicine::all();
+        return view('show_medicine',compact('medicines'));
+    }
+    
+    public function buyMedicine($id)
+    {
+        $medicine=Medicine::find($id);
+        return view('buy_medicine',compact('medicine'));
+    }
     public function index()
     {
         return view('admin.add_medicine');
@@ -174,5 +185,34 @@ class MedicineController extends Controller
         $medicine->is_active=!$medicine->is_active;
         $medicine->save();
         return redirect('dashboard');
+    }
+
+    public function deleteMedicine($id)
+    {
+        try
+        {
+            $medicine=Medicine::find($id);
+            if (File::exists($medicine->image)) {
+                //File::delete($image_path);
+                unlink($medicine->image);
+            }
+            $medicine->delete();
+            $notification=array(
+                'message'=>'Employee Delete Successfully',
+                'alert-type'=>'warning'
+            );
+           // echo $employee->photo;
+          //  dd($employee);
+            //exit();
+            return redirect('dashboard')->with($notification);
+        }
+        catch(Exception $e)
+        {
+            $notification=array(
+                'message'=>'Can not Delete',
+                'alert-type'=>'danger'
+            );
+            return redirect('dashboard')->with($notification);
+        }
     }
 }
